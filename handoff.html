@@ -1,0 +1,1879 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Cosmic Academy — Developer Design System & Responsive Handoff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cc-red: #DE322D;
+      --cc-red-deep: #B82622;
+      --cc-red-subtle: rgba(222, 50, 45, 0.14);
+      --cc-whatsapp: #25D366;
+      --cc-gold: #E8B44A;
+      --cc-ink: #0A0A0A;
+      --cc-ink-soft: #111214;
+      --cc-hero-bg: #0C0D10;
+      --cc-surface: #14151A;
+      --cc-surface-elevated: #1F2128;
+      --cc-surface-hover: #262933;
+      --cc-border: #242630;
+      --cc-border-glass: rgba(255, 255, 255, 0.08);
+      --cc-text: #FFFFFF;
+      --cc-text-muted: #8E929E;
+      --cc-text-dim: #545763;
+      --font-display: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Geist Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-pill: 100px;
+      --shadow-luxury: 0 20px 40px -15px rgba(0,0,0,0.7), 0 0 1px 1px rgba(255,255,255,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background-color: var(--cc-ink);
+      color: var(--cc-text);
+      font-family: var(--font-display);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Top App Navigation Chrome */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--cc-border);
+      padding: 0 28px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-logo {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+    .brand-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--cc-red-subtle);
+      color: #FF7B76;
+      border: 1px solid rgba(222, 50, 45, 0.3);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+    }
+    .brand-divider {
+      height: 24px;
+      width: 1px;
+      background: var(--cc-border);
+    }
+    .project-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cc-text-muted);
+    }
+    .project-title strong {
+      color: var(--cc-text);
+      font-weight: 600;
+    }
+
+    /* Main Tab Navigation */
+    .tab-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--cc-border-glass);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--cc-text-muted);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tab-btn:hover {
+      color: var(--cc-text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .tab-btn.active {
+      color: #FFFFFF;
+      background: var(--cc-red);
+      font-weight: 600;
+      box-shadow: 0 4px 16px rgba(222, 50, 45, 0.35);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-action {
+      background: var(--cc-surface);
+      border: 1px solid var(--cc-border);
+      color: var(--cc-text);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-action:hover {
+      background: var(--cc-surface-hover);
+      border-color: rgba(255,255,255,0.2);
+    }
+    .btn-action.primary {
+      background: var(--cc-red);
+      border-color: var(--cc-red);
+      color: #FFF;
+    }
+    .btn-action.primary:hover {
+      background: var(--cc-red-deep);
+    }
+
+    /* Main Container */
+    .app-main {
+      padding: 24px 28px 80px;
+      max-width: 1720px;
+      margin: 0 auto;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ----------------------------------------------------
+       VIEWPORT BOARDS TAB
+       ---------------------------------------------------- */
+    .viewport-control-bar {
+      background: var(--cc-surface);
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-lg);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .viewport-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .vp-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--cc-border);
+      color: var(--cc-text-muted);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .vp-pill:hover {
+      color: var(--cc-text);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .vp-pill.active {
+      background: #FFFFFF;
+      color: var(--cc-ink);
+      font-weight: 600;
+      border-color: #FFFFFF;
+    }
+    .vp-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    .vp-tools {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .zoom-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 3px 6px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--cc-border);
+    }
+    .zoom-btn {
+      background: none;
+      border: none;
+      color: var(--cc-text-muted);
+      padding: 4px 8px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .zoom-btn:hover { color: #FFF; background: rgba(255,255,255,0.1); }
+    .zoom-btn.active { color: var(--cc-red); font-weight: 700; }
+
+    /* Canvas Frame Stage */
+    .viewport-stage {
+      background: radial-gradient(circle at 50% 10%, #161820 0%, #0A0A0A 100%);
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      min-height: 850px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: auto;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .device-mockup {
+      background: #000;
+      border-radius: 28px;
+      box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .device-mockup.desktop {
+      width: 1440px;
+      border-radius: 16px;
+      border: 12px solid #1A1C23;
+    }
+    .device-mockup.tablet {
+      width: 834px;
+      border-radius: 24px;
+      border: 14px solid #1A1C23;
+    }
+    .device-mockup.mobile {
+      width: 390px;
+      border-radius: 44px;
+      border: 10px solid #1A1C23;
+    }
+
+    .device-header-bar {
+      background: #1A1C23;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .device-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .device-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3B3E4C;
+    }
+    .device-dot.r { background: #FF5F56; }
+    .device-dot.y { background: #FFBD2E; }
+    .device-dot.g { background: #27C93F; }
+
+    .device-url-bar {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #8E929E;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .device-iframe-container {
+      width: 100%;
+      height: 780px;
+      background: #0A0A0A;
+      position: relative;
+    }
+    .device-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #0A0A0A;
+    }
+
+    /* Split Multi-Device Mode */
+    .split-devices-wrap {
+      display: none;
+      gap: 40px;
+      align-items: flex-start;
+      width: 100%;
+      justify-content: center;
+    }
+    .split-devices-wrap.active {
+      display: flex;
+    }
+    .single-device-wrap {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .single-device-wrap.hidden {
+      display: none;
+    }
+
+    /* Quick Section Jump Navigator */
+    .quick-jump-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 0 2px;
+      margin-bottom: 20px;
+    }
+    .jump-chip {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--cc-border);
+      color: var(--cc-text-muted);
+      font-size: 11px;
+      font-family: var(--font-mono);
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .jump-chip:hover {
+      background: var(--cc-surface-hover);
+      color: #FFF;
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ----------------------------------------------------
+       DESIGN TOKENS TAB
+       ---------------------------------------------------- */
+    .tokens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 28px;
+    }
+    .token-card {
+      background: var(--cc-surface);
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-luxury);
+    }
+    .token-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--cc-border);
+      padding-bottom: 14px;
+    }
+    .token-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .token-card-title .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cc-red);
+    }
+    .token-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cc-text-muted);
+      background: rgba(255,255,255,0.04);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* Swatches list */
+    .swatch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: var(--radius-md);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .swatch-row:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--cc-border);
+      transform: translateX(4px);
+    }
+    .swatch-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .swatch-pill {
+      width: 44px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+    .swatch-meta h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cc-text);
+    }
+    .swatch-meta span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cc-text-muted);
+    }
+    .swatch-copy-val {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--cc-red);
+      background: var(--cc-red-subtle);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* Typography Scale Table */
+    .type-specimen-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .type-specimen-table th {
+      text-align: left;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--cc-text-dim);
+      text-transform: uppercase;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--cc-border);
+    }
+    .type-specimen-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+    }
+    .type-specimen-preview {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .type-clamp-code {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #9D9D9D;
+      background: rgba(0,0,0,0.3);
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* Spacing Ladder */
+    .spacing-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+    .spacing-label {
+      width: 70px;
+      color: var(--cc-text-muted);
+    }
+    .spacing-bar-wrap {
+      flex: 1;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+    }
+    .spacing-bar {
+      height: 100%;
+      background: var(--cc-red);
+      border-radius: 4px;
+      opacity: 0.85;
+    }
+    .spacing-val {
+      width: 60px;
+      text-align: right;
+      color: var(--cc-text);
+      font-weight: 600;
+    }
+
+    /* ----------------------------------------------------
+       COMPONENT GALLERY TAB
+       ---------------------------------------------------- */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: 28px;
+    }
+    .component-box {
+      background: var(--cc-surface);
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-luxury);
+    }
+    .component-box-header {
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--cc-border);
+      padding-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .component-box-header h3 {
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .component-stage-demo {
+      background: #0A0A0A;
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+    }
+    .component-stage-demo.light {
+      background: #F1F2F1;
+      color: #0A0A0A;
+    }
+
+    /* Live Component Library Masters */
+    .btn-cc-primary {
+      background: var(--cc-red);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 20px rgba(222, 50, 45, 0.3);
+    }
+    .btn-cc-primary:hover {
+      background: var(--cc-red-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(222, 50, 45, 0.45);
+    }
+    .btn-cc-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-cc-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 16px 28px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+    .btn-cc-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-cc-whatsapp {
+      background: var(--cc-whatsapp);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 26px rgba(37, 211, 102, 0.35);
+      position: relative;
+    }
+    .btn-cc-whatsapp:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(37, 211, 102, 0.45);
+    }
+    .radar-pulse-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: inherit;
+      border: 2px solid var(--cc-whatsapp);
+      animation: radarWave 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      pointer-events: none;
+    }
+    @keyframes radarWave {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+
+    /* Live FAQ Item Demo */
+    .faq-interactive-card {
+      width: 100%;
+      background: #FFFFFF;
+      color: #0A0A0A;
+      border-radius: 16px;
+      border: 1px solid #E6E6E6;
+      padding: 22px 24px;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-interactive-card.open {
+      border-color: #D9D9D9;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    }
+    .faq-q-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .faq-q-title {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .faq-icon-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.35s ease;
+    }
+    .faq-interactive-card.open .faq-icon-circle {
+      background: var(--cc-red);
+      color: #FFFFFF;
+      transform: rotate(45deg);
+    }
+    .faq-a-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.35s ease, margin-top 0.35s ease;
+      font-size: 14px;
+      color: #5D5D5D;
+      line-height: 1.6;
+    }
+    .faq-interactive-card.open .faq-a-body {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 14px;
+    }
+
+    /* Live Pricing Card Demo */
+    .pricing-tier-demo {
+      width: 280px;
+      background: #0A0A0A;
+      color: #FFFFFF;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      transition: all 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+    .pricing-tier-demo:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: rgba(222, 50, 45, 0.5);
+      box-shadow: 0 30px 60px rgba(222, 50, 45, 0.15), 0 0 0 1px var(--cc-red);
+    }
+    .pricing-badge-popular {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--cc-red);
+      color: #FFF;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* ----------------------------------------------------
+       MOTION & SIMULATOR TAB
+       ---------------------------------------------------- */
+    .motion-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 1080px) {
+      .motion-container { grid-template-columns: 1fr; }
+    }
+
+    .motion-spec-card {
+      background: var(--cc-surface);
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+    }
+    .motion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--cc-border);
+      padding-bottom: 14px;
+    }
+    .motion-header h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .motion-interactive-box {
+      background: #0A0A0A;
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .motion-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .btn-motion-trigger {
+      background: var(--cc-red);
+      color: #FFF;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-motion-trigger:hover {
+      background: var(--cc-red-deep);
+    }
+
+    .motion-formula-code {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--cc-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #B0B4BE;
+      line-height: 1.6;
+    }
+
+    /* Motion Demo Elements */
+    .hero-reveal-target {
+      opacity: 0;
+      transform: translateY(50px);
+      filter: blur(5px);
+      transition: all 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+      text-align: center;
+    }
+    .hero-reveal-target.revealed {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* 3D Rolling Counter Demo */
+    .counter-reel-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    .counter-digit-reel {
+      font-size: 64px;
+      color: #FFFFFF;
+      height: 76px;
+      line-height: 76px;
+      overflow: hidden;
+      display: inline-block;
+    }
+    .counter-strip {
+      transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(0);
+    }
+    .counter-strip.rolled {
+      transform: translateY(-456px); /* 500+ */
+    }
+    .counter-strip span {
+      display: block;
+      height: 76px;
+      text-align: center;
+    }
+    .counter-suffix {
+      font-size: 36px;
+      color: var(--cc-red);
+    }
+
+    /* ----------------------------------------------------
+       PENPOT & EXPORT TAB
+       ---------------------------------------------------- */
+    .penpot-hub-card {
+      background: var(--cc-surface);
+      border: 1px solid var(--cc-border);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin-bottom: 28px;
+    }
+    .code-mirror-box {
+      background: #0A0A0A;
+      border: 1px solid var(--cc-border);
+      border-radius: 12px;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #A3A8B8;
+      max-height: 380px;
+      overflow-y: auto;
+      line-height: 1.6;
+      white-space: pre;
+      margin: 16px 0;
+    }
+
+    /* Notification Toast */
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--cc-red);
+      color: #FFFFFF;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 10px 30px rgba(222,50,45,0.4);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .toast-pill.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Header Navigation Bar -->
+  <header class="app-header">
+    <div class="brand-group">
+      <a href="#" class="brand-logo-wrap">
+        <img src="assets/images/logo.png" alt="Car Cosmic" class="brand-logo" onerror="this.style.display='none'">
+        <span style="font-weight: 800; font-size: 16px; letter-spacing: -0.02em;">CAR COSMIC</span>
+      </a>
+      <span class="brand-badge">Design Handoff Suite</span>
+      <div class="brand-divider"></div>
+      <div class="project-title"><strong>Academy Website</strong> · Developer Spec</div>
+    </div>
+
+    <!-- Mode Selector Tabs -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="boards">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Screen Boards
+      </button>
+      <button class="tab-btn" data-tab="tokens">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+        Design Tokens
+      </button>
+      <button class="tab-btn" data-tab="components">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        Components
+      </button>
+      <button class="tab-btn" data-tab="motion">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Motion Lab
+      </button>
+      <button class="tab-btn" data-tab="penpot">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Penpot Package
+      </button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <a href="index.html" target="_blank" class="btn-action">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open Live Site
+      </a>
+      <button class="btn-action primary" onclick="copyTokensToClipboard()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copy CSS Tokens
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-main">
+
+    <!-- ====================================================
+         TAB 1: RESPONSIVE SCREEN BOARDS
+         ==================================================== -->
+    <section id="tab-boards" class="tab-panel active">
+      
+      <!-- Viewport & Zoom Controls -->
+      <div class="viewport-control-bar">
+        <div class="viewport-pills">
+          <button class="vp-pill active" data-vp="desktop" onclick="setDeviceViewport('desktop')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            Desktop <span class="vp-tag">1440px</span>
+          </button>
+          <button class="vp-pill" data-vp="tablet" onclick="setDeviceViewport('tablet')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Tablet <span class="vp-tag">834px</span>
+          </button>
+          <button class="vp-pill" data-vp="mobile" onclick="setDeviceViewport('mobile')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            Mobile <span class="vp-tag">390px</span>
+          </button>
+          <button class="vp-pill" data-vp="split" onclick="setDeviceViewport('split')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
+            Split View <span class="vp-tag">All 3</span>
+          </button>
+        </div>
+
+        <div class="vp-tools">
+          <span style="font-size: 12px; color: var(--cc-text-muted);">Frame Zoom:</span>
+          <div class="zoom-group">
+            <button class="zoom-btn" onclick="setZoom(0.65)">65%</button>
+            <button class="zoom-btn" onclick="setZoom(0.85)">85%</button>
+            <button class="zoom-btn active" onclick="setZoom(1.0)">100%</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Section Jump Chips -->
+      <div class="quick-jump-bar">
+        <span style="font-size: 11px; font-family: var(--font-mono); color: var(--cc-text-dim); margin-right: 4px;">SECTIONS:</span>
+        <button class="jump-chip" onclick="jumpToIframeSection('hero')">01 Hero & Admission</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('marquee')">02 Brand Marquee</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('trainer')">03 Master Trainer Raj</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('metrics')">04 Rolling Metrics</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('curriculum')">05 6-Days Curriculum</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('highlights')">06 Hands-On Highlights</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('pricing')">07 Pricing & Packages</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('faq')">08 FAQ Accordion</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('reviews')">09 Reviews & Certs</button>
+        <button class="jump-chip" onclick="jumpToIframeSection('footer')">10 Site Footer</button>
+      </div>
+
+      <!-- Canvas Stage -->
+      <div class="viewport-stage" id="viewport-stage">
+        
+        <!-- Single Device Mockup -->
+        <div class="single-device-wrap" id="single-device-wrap">
+          <div class="device-mockup desktop" id="main-device-mockup">
+            <div class="device-header-bar">
+              <div class="device-dots">
+                <div class="device-dot r"></div>
+                <div class="device-dot y"></div>
+                <div class="device-dot g"></div>
+              </div>
+              <div class="device-url-bar">
+                <span>🔒</span> carcosmic.com/academy · <span id="mockup-vp-label">1440 × 900</span>
+              </div>
+              <div style="width: 48px;"></div>
+            </div>
+            <div class="device-iframe-container">
+              <iframe id="main-iframe" class="device-iframe" src="index.html"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Split Multi-Device Container -->
+        <div class="split-devices-wrap" id="split-devices-wrap">
+          <!-- Desktop 1440 -->
+          <div class="device-mockup desktop" style="width: 700px; transform-origin: top left; transform: scale(0.65);">
+            <div class="device-header-bar"><div class="device-dots"><div class="device-dot r"></div><div class="device-dot y"></div><div class="device-dot g"></div></div><div class="device-url-bar">Desktop 1440px</div><div style="width: 30px;"></div></div>
+            <div class="device-iframe-container" style="height: 1000px;"><iframe class="device-iframe" src="index.html"></iframe></div>
+          </div>
+          <!-- Tablet 834 -->
+          <div class="device-mockup tablet" style="width: 460px; transform-origin: top left; transform: scale(0.65);">
+            <div class="device-header-bar"><div class="device-dots"><div class="device-dot"></div></div><div class="device-url-bar">Tablet 834px</div><div></div></div>
+            <div class="device-iframe-container" style="height: 1000px;"><iframe class="device-iframe" src="index.html"></iframe></div>
+          </div>
+          <!-- Mobile 390 -->
+          <div class="device-mockup mobile" style="width: 280px; transform-origin: top left; transform: scale(0.65);">
+            <div class="device-header-bar"><div class="device-url-bar" style="margin: 0 auto;">Mobile 390px</div></div>
+            <div class="device-iframe-container" style="height: 1000px;"><iframe class="device-iframe" src="index.html"></iframe></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ====================================================
+         TAB 2: DESIGN TOKENS
+         ==================================================== -->
+    <section id="tab-tokens" class="tab-panel">
+      <div class="tokens-grid">
+        
+        <!-- Brand Colors -->
+        <div class="token-card">
+          <div class="token-card-header">
+            <h3 class="token-card-title"><span class="dot"></span> Brand & Accent Colors</h3>
+            <span class="token-badge">5 Tokens</span>
+          </div>
+          <div class="swatches-list">
+            <div class="swatch-row" onclick="copyText('#DE322D', 'Primary Red')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #DE322D;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-red</h4>
+                  <span>Primary Racing Red · Main CTA & Hero Accent</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#DE322D</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#B82622', 'Deep Red')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #B82622;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-red-deep</h4>
+                  <span>Deep Crimson · Button Hover & Active Glow</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#B82622</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#25D366', 'WhatsApp Green')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #25D366;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-whatsapp</h4>
+                  <span>Official WhatsApp Green · Direct Admissions</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#25D366</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#E8B44A', 'Luxury Gold')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #E8B44A;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-gold</h4>
+                  <span>Accreditation Gold · IDA Master Badges</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#E8B44A</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('rgba(222,50,45,0.14)', 'Subtle Red')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: rgba(222,50,45,0.14); border-color: rgba(222,50,45,0.4);"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-red-subtle</h4>
+                  <span>14% Red Tint · Tag Pills & Section Dividers</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">rgba(222,50,45,0.14)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canvas & Surfaces -->
+        <div class="token-card">
+          <div class="token-card-header">
+            <h3 class="token-card-title"><span class="dot" style="background: #FFF;"></span> Canvas Grounds & Surfaces</h3>
+            <span class="token-badge">5 Tokens</span>
+          </div>
+          <div class="swatches-list">
+            <div class="swatch-row" onclick="copyText('#0A0A0A', 'Carbon Black')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #0A0A0A;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-ink</h4>
+                  <span>#0A0A0A · Primary Precision Dark Canvas</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#0A0A0A</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#0C0D10', 'Hero Underlay')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #0C0D10;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-hero-bg</h4>
+                  <span>#0C0D10 · Hero Radial Gradient Underlay</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#0C0D10</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#14151A', 'Dark Surface')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #14151A;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-surface</h4>
+                  <span>#14151A · Modular Dark Card & Panel Surface</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#14151A</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#232323', 'Elevated Dark')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #232323;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-surface-elevated</h4>
+                  <span>#232323 · Floating Controls & Active Rows</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#232323</div>
+            </div>
+
+            <div class="swatch-row" onclick="copyText('#F1F2F1', 'Light Ground')">
+              <div class="swatch-info">
+                <div class="swatch-pill" style="background: #F1F2F1;"></div>
+                <div class="swatch-meta">
+                  <h4>--cc-bg-light</h4>
+                  <span>#F1F2F1 · Alternating Light Section Background</span>
+                </div>
+              </div>
+              <div class="swatch-copy-val">#F1F2F1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typography Tokens -->
+        <div class="token-card" style="grid-column: 1 / -1;">
+          <div class="token-card-header">
+            <h3 class="token-card-title"><span class="dot" style="background: var(--cc-gold);"></span> Responsive Typography System (Geist Display & Mono)</h3>
+            <span class="token-badge">Fluid Clamp Scales</span>
+          </div>
+          <table class="type-specimen-table">
+            <thead>
+              <tr>
+                <th>Level</th>
+                <th>Desktop</th>
+                <th>Tablet</th>
+                <th>Mobile</th>
+                <th>Tracking</th>
+                <th>Weight</th>
+                <th>Fluid Clamp Formula</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Display H1</strong></td>
+                <td>88px</td>
+                <td>64px</td>
+                <td>40px</td>
+                <td>-4.2px</td>
+                <td>600</td>
+                <td><span class="type-clamp-code">clamp(2.5rem, 5.5vw + 1rem, 5.5rem)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Section H2</strong></td>
+                <td>64px</td>
+                <td>44px</td>
+                <td>32px</td>
+                <td>-2.5px</td>
+                <td>600</td>
+                <td><span class="type-clamp-code">clamp(2.0rem, 3.8vw + 0.8rem, 4.0rem)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Subhead H3</strong></td>
+                <td>48px</td>
+                <td>32px</td>
+                <td>24px</td>
+                <td>-1.5px</td>
+                <td>600</td>
+                <td><span class="type-clamp-code">clamp(1.5rem, 2.5vw + 0.5rem, 3.0rem)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Card H4</strong></td>
+                <td>32px</td>
+                <td>26px</td>
+                <td>20px</td>
+                <td>-0.8px</td>
+                <td>600</td>
+                <td><span class="type-clamp-code">clamp(1.25rem, 1.8vw + 0.4rem, 2.0rem)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Body Large</strong></td>
+                <td>18px</td>
+                <td>17px</td>
+                <td>16px</td>
+                <td>-0.3px</td>
+                <td>400</td>
+                <td><span class="type-clamp-code">clamp(1rem, 0.4vw + 0.9rem, 1.125rem)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Body Regular</strong></td>
+                <td>15px</td>
+                <td>14px</td>
+                <td>14px</td>
+                <td>-0.2px</td>
+                <td>400</td>
+                <td><span class="type-clamp-code">0.9375rem (15px fixed)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Kicker Tag</strong></td>
+                <td>11px</td>
+                <td>10px</td>
+                <td>10px</td>
+                <td>+8px</td>
+                <td>600 Mono</td>
+                <td><span class="type-clamp-code">0.6875rem uppercase tracking-widest</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Spacing Scale & Border Radii -->
+        <div class="token-card">
+          <div class="token-card-header">
+            <h3 class="token-card-title"><span class="dot"></span> Spacing Scale (8px Grid System)</h3>
+            <span class="token-badge">10 Steps</span>
+          </div>
+          <div class="spacing-ladder">
+            <div class="spacing-row"><span class="spacing-label">2xs</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 4px;"></div></div><span class="spacing-val">4px</span></div>
+            <div class="spacing-row"><span class="spacing-label">xs</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 8px;"></div></div><span class="spacing-val">8px</span></div>
+            <div class="spacing-row"><span class="spacing-label">sm</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 12px;"></div></div><span class="spacing-val">12px</span></div>
+            <div class="spacing-row"><span class="spacing-label">md</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 16px;"></div></div><span class="spacing-val">16px</span></div>
+            <div class="spacing-row"><span class="spacing-label">lg</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 24px;"></div></div><span class="spacing-val">24px</span></div>
+            <div class="spacing-row"><span class="spacing-label">xl</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 32px;"></div></div><span class="spacing-val">32px</span></div>
+            <div class="spacing-row"><span class="spacing-label">2xl</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 48px;"></div></div><span class="spacing-val">48px</span></div>
+            <div class="spacing-row"><span class="spacing-label">3xl</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 64px;"></div></div><span class="spacing-val">64px</span></div>
+            <div class="spacing-row"><span class="spacing-label">4xl</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 80px;"></div></div><span class="spacing-val">80px</span></div>
+            <div class="spacing-row"><span class="spacing-label">5xl</span><div class="spacing-bar-wrap"><div class="spacing-bar" style="width: 120px;"></div></div><span class="spacing-val">120px</span></div>
+          </div>
+        </div>
+
+        <!-- Border Radii & Shadows -->
+        <div class="token-card">
+          <div class="token-card-header">
+            <h3 class="token-card-title"><span class="dot"></span> Corner Radii & Elevation</h3>
+            <span class="token-badge">Precision Radii</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 10px;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--cc-border); border-radius: 8px; padding: 18px; text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #FFF;">8px</div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cc-text-muted); margin-top: 4px;">Small Cards & Swatches</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--cc-border); border-radius: 16px; padding: 18px; text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #FFF;">16px</div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cc-text-muted); margin-top: 4px;">FAQ Rows & Image Corners</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--cc-border); border-radius: 24px; padding: 18px; text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #FFF;">24px</div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cc-text-muted); margin-top: 4px;">Pricing & Trainer Cards</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--cc-border); border-radius: 100px; padding: 18px; text-align: center;">
+              <div style="font-size: 20px; font-weight: 700; color: #FFF;">100px</div>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--cc-text-muted); margin-top: 4px;">Pill Buttons & Badges</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TAB 3: COMPONENT GALLERY & STATES
+         ==================================================== -->
+    <section id="tab-components" class="tab-panel">
+      <div class="components-grid">
+        
+        <!-- Button Variants -->
+        <div class="component-box">
+          <div class="component-box-header">
+            <h3>CTA Buttons & Micro-interactions</h3>
+            <span class="token-badge">Interactive States</span>
+          </div>
+          <div class="component-stage-demo">
+            <button class="btn-cc-primary">
+              Enroll for Next Batch
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </button>
+            <button class="btn-cc-secondary">
+              Download Syllabus
+            </button>
+            <button class="btn-cc-whatsapp">
+              <span class="radar-pulse-ring"></span>
+              WhatsApp: +91 77788 18810
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ Accordion Variant -->
+        <div class="component-box">
+          <div class="component-box-header">
+            <h3>FAQ Accordion Row (Closed / Open States)</h3>
+            <span class="token-badge">Click to Toggle</span>
+          </div>
+          <div class="component-stage-demo light">
+            <div class="faq-interactive-card open" onclick="this.classList.toggle('open')">
+              <div class="faq-q-row">
+                <span class="faq-q-title">Do I need prior experience in auto detailing to join?</span>
+                <div class="faq-icon-circle">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </div>
+              </div>
+              <div class="faq-a-body">
+                No prior automotive detailing experience is necessary. Our 6-Days Comprehensive Masterclass is designed from foundational paint defect analysis all the way to advanced multi-stage rotary correction and TPU film tucking.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Tier Card Variant -->
+        <div class="component-box">
+          <div class="component-box-header">
+            <h3>Pricing Package Card (Spring Lift on Hover)</h3>
+            <span class="token-badge">Interactive Card</span>
+          </div>
+          <div class="component-stage-demo">
+            <div class="pricing-tier-demo">
+              <span class="pricing-badge-popular">MOST POPULAR</span>
+              <h4 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Pro Detailer</h4>
+              <div style="font-size: 38px; font-weight: 800; color: #FFF; line-height: 1;">₹45,000 <span style="font-size: 14px; color: #8E929E; font-weight: 400;">/ 6 Days</span></div>
+              <p style="font-size: 13px; color: #B0B4BE; margin: 12px 0 18px;">Complete practical floor mastery on live luxury cars in Surat bay.</p>
+              <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 14px; margin-bottom: 20px;">
+                <div style="font-size: 13px; color: #EEE; display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                  <span style="color: var(--cc-red);">✓</span> Multi-Stage Paint Correction
+                </div>
+                <div style="font-size: 13px; color: #EEE; display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                  <span style="color: var(--cc-red);">✓</span> 9H Ceramic & 10H Graphene
+                </div>
+                <div style="font-size: 13px; color: #EEE; display: flex; align-items: center; gap: 8px;">
+                  <span style="color: var(--cc-red);">✓</span> IDA Master Certification
+                </div>
+              </div>
+              <button class="btn-cc-primary" style="width: 100%; justify-content: center; padding: 12px;">Enroll Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Rolling Stat Block -->
+        <div class="component-box">
+          <div class="component-box-header">
+            <h3>3D Rolling Number Stat Block</h3>
+            <span class="token-badge">Interactive Counter</span>
+          </div>
+          <div class="component-stage-demo">
+            <div style="background: #14151A; border: 1px solid var(--cc-border); border-radius: 20px; padding: 28px; width: 320px;">
+              <div style="height: 1px; width: 100%; background: rgba(255,255,255,0.1); margin-bottom: 16px;"></div>
+              <div class="counter-reel-wrap">
+                <div class="counter-digit-reel">
+                  <div class="counter-strip" id="demo-stat-strip">
+                    <span>0</span>
+                    <span>100</span>
+                    <span>250</span>
+                    <span>350</span>
+                    <span>420</span>
+                    <span>480</span>
+                    <span>500</span>
+                  </div>
+                </div>
+                <span class="counter-suffix">+</span>
+              </div>
+              <h4 style="font-size: 18px; font-weight: 600; color: #FFF; margin-top: 8px;">Alumni Detailers Trained</h4>
+              <p style="font-size: 13px; color: #B0B4BE; margin-top: 4px;">Over 500+ certified entrepreneurs successfully running studios across India.</p>
+              <button class="btn-motion-trigger" style="margin-top: 16px;" onclick="triggerCounterRoll()">Trigger Roll Animation</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TAB 4: MOTION & ANIMATION LAB
+         ==================================================== -->
+    <section id="tab-motion" class="tab-panel">
+      <div class="motion-container">
+        
+        <!-- 01 Hero Reveal -->
+        <div class="motion-spec-card">
+          <div class="motion-header">
+            <h3>01 · Hero Entrance Stagger</h3>
+            <span class="token-badge">1.10s cubic-bezier(0.16, 1, 0.3, 1)</span>
+          </div>
+          <div class="motion-interactive-box">
+            <div id="hero-reveal-demo" class="hero-reveal-target">
+              <span class="brand-badge" style="margin-bottom: 12px; display: inline-block;">Surat Detailing Academy</span>
+              <h2 style="font-size: 26px; font-weight: 700; color: #FFF; max-width: 440px;">Master the Art of Detailing — Transform Passion into Business</h2>
+            </div>
+            <div class="motion-controls">
+              <button class="btn-motion-trigger" onclick="runHeroReveal()">Play Animation</button>
+              <button class="btn-motion-trigger" style="background: #232323;" onclick="resetHeroReveal()">Reset</button>
+            </div>
+          </div>
+          <div class="motion-formula-code">
+/* CSS Keyframe Implementation */
+@keyframes heroEntrance {
+  0% { opacity: 0; transform: translateY(50px); filter: blur(5px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.hero-elem { animation: heroEntrance 1.10s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+          </div>
+        </div>
+
+        <!-- 02 Metrics 3D Rolling Counter -->
+        <div class="motion-spec-card">
+          <div class="motion-header">
+            <h3>02 · 3D Rolling Number Reel</h3>
+            <span class="token-badge">1.15s ease-out</span>
+          </div>
+          <div class="motion-interactive-box">
+            <div class="counter-reel-wrap">
+              <div class="counter-digit-reel">
+                <div class="counter-strip" id="lab-stat-strip">
+                  <span>0</span>
+                  <span>100</span>
+                  <span>250</span>
+                  <span>350</span>
+                  <span>420</span>
+                  <span>480</span>
+                  <span>500</span>
+                </div>
+              </div>
+              <span class="counter-suffix">+</span>
+            </div>
+            <div class="motion-controls">
+              <button class="btn-motion-trigger" onclick="runLabCounter()">Roll Numbers</button>
+              <button class="btn-motion-trigger" style="background: #232323;" onclick="resetLabCounter()">Reset</button>
+            </div>
+          </div>
+          <div class="motion-formula-code">
+/* Lenis / Webflow IX2 Inertial Counter */
+transform: translateY(calc(-100% * var(--target-step)));
+transition: transform 1.15s cubic-bezier(0.16, 1, 0.3, 1);
+          </div>
+        </div>
+
+        <!-- 03 Pricing Spring Lift -->
+        <div class="motion-spec-card">
+          <div class="motion-header">
+            <h3>03 · Pricing Card Spring Physics</h3>
+            <span class="token-badge">0.55s Spring (bounce: 0.32)</span>
+          </div>
+          <div class="motion-interactive-box">
+            <div id="spring-card-demo" class="pricing-tier-demo" style="width: 260px; pointer-events: auto;">
+              <span class="pricing-badge-popular">SPRING HOVER</span>
+              <h4 style="font-size: 20px;">Studio Master</h4>
+              <div style="font-size: 32px; font-weight: 800; color: #FFF;">₹75,000</div>
+            </div>
+            <span style="font-size: 11px; color: var(--cc-text-muted); margin-top: 14px;">Hover or click the card above to test spring bounce</span>
+          </div>
+          <div class="motion-formula-code">
+/* Spring Physics Curve */
+transition: transform 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+transform: translateY(-12px) scale(1.02);
+          </div>
+        </div>
+
+        <!-- 04 Infinite Marquee -->
+        <div class="motion-spec-card">
+          <div class="motion-header">
+            <h3>04 · Partner Logo Infinite Linear Marquee</h3>
+            <span class="token-badge">6.0s Linear Infinite</span>
+          </div>
+          <div class="motion-interactive-box" style="padding: 20px 0;">
+            <div style="width: 100%; overflow: hidden; display: flex; white-space: nowrap; mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);">
+              <div id="marquee-track" style="display: flex; gap: 40px; animation: marqueeScroll 6s linear infinite; font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: #FFF;">
+                <span>RUPES</span> · <span>KOCH-CHEMIE</span> · <span>3M AUTOMOTIVE</span> · <span>GARWARE PPF</span> · <span>MAXSHINE</span> · <span>BOSCH</span> · <span>RUPES</span> · <span>KOCH-CHEMIE</span> · <span>3M AUTOMOTIVE</span>
+              </div>
+            </div>
+            <div class="motion-controls" style="margin-top: 20px;">
+              <button class="btn-motion-trigger" onclick="setMarqueeSpeed(6)">Normal (6s)</button>
+              <button class="btn-motion-trigger" style="background: #232323;" onclick="setMarqueeSpeed(3)">Fast (3s)</button>
+              <button class="btn-motion-trigger" style="background: #232323;" onclick="toggleMarqueePause()">Pause/Resume</button>
+            </div>
+          </div>
+          <div class="motion-formula-code">
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====================================================
+         TAB 5: PENPOT & EXPORT HUB
+         ==================================================== -->
+    <section id="tab-penpot" class="tab-panel">
+      <div class="penpot-hub-card">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+          <div>
+            <h2 style="font-size: 24px; font-weight: 700; color: #FFF; margin-bottom: 6px;">Penpot Design Automation & Tokens Package</h2>
+            <p style="color: var(--cc-text-muted); font-size: 14px; max-width: 780px;">
+              This workspace includes the full Penpot project suite (`penpot/` folder) with automation scripts, official plugin manifest, and DTCG design tokens ready for direct import into Penpot.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn-action primary" onclick="copyPenpotScript()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy Penpot Builder Script
+            </button>
+            <a href="penpot/penpot-tokens.json" download="carcosmic-tokens.json" class="btn-action">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Tokens JSON
+            </a>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: var(--cc-red); margin-bottom: 8px;">PENPOT AUTOMATION SCRIPT PREVIEW (`penpot/penpot-script.js`)</h4>
+          <div class="code-mirror-box" id="penpot-script-display">/**
+ * CAR COSMIC ACADEMY — PENPOT AUTOMATION SCRIPT
+ * Run this snippet directly in Penpot Plugin Console or Penpot MCP `execute_code`.
+ */
+(async () => {
+  const TOKENS = {
+    red: "#DE322D",
+    ink: "#0A0A0A",
+    surface: "#14151A",
+    light: "#F3F3F3",
+    white: "#FFFFFF"
+  };
+
+  const SECTIONS = [
+    { name: "01 · Navbar & Sticky Header", h: 84, dark: true },
+    { name: "02 · Hero Section & Admission CTAs", h: 880, dark: true },
+    { name: "03 · Brand Partners Infinite Marquee", h: 116, dark: true },
+    { name: "04 · IDA Master Trainer Raj Deshmukh Spotlight", h: 620, dark: false },
+    { name: "05 · Live Studio & Supercar Highlights", h: 580, dark: false },
+    { name: "06 · 3D Rolling Counter Metrics", h: 520, dark: true },
+    { name: "07 · Comprehensive 6-Days Curriculum (01-06)", h: 860, dark: true },
+    { name: "08 · Hands-On Floor Time Matrix", h: 680, dark: false },
+    { name: "09 · Certification & Course Packages (3 Tiers)", h: 890, dark: false },
+    { name: "10 · FAQ Interactive Accordion", h: 640, dark: false },
+    { name: "11 · Verified Student Reviews & Testimonials", h: 660, dark: false },
+    { name: "12 · Academy Guides & Industry Journal", h: 620, dark: false },
+    { name: "13 · Final Enrollment Call to Action", h: 420, red: true },
+    { name: "14 · Comprehensive Site Footer & Newsletter", h: 540, dark: true }
+  ];
+
+  async function buildBoard(title, width, x) {
+    const board = penpot.createBoard();
+    board.name = title;
+    board.resize(width, 7800);
+    board.x = x;
+    board.y = 0;
+    board.fills = [{ fillColor: TOKENS.ink, fillOpacity: 1 }];
+
+    const flex = board.addFlexLayout();
+    flex.dir = "column";
+
+    for (const sec of SECTIONS) {
+      const box = penpot.createBoard();
+      box.name = sec.name;
+      box.resize(width, sec.h);
+      box.fills = [{ fillColor: sec.red ? TOKENS.red : (sec.dark ? TOKENS.ink : TOKENS.light), fillOpacity: 1 }];
+      const lbl = penpot.createText(sec.name);
+      lbl.fontSize = width > 500 ? 20 : 15;
+      lbl.fontWeight = "600";
+      lbl.fills = [{ fillColor: (sec.dark || sec.red) ? TOKENS.white : TOKENS.ink, fillOpacity: 0.9 }];
+      box.appendChild(lbl);
+      board.appendChild(box);
+    }
+    return board;
+  }
+
+  const d = await buildBoard("Desktop (1440px)", 1440, 0);
+  const t = await buildBoard("Tablet (834px)", 834, 1540);
+  const m = await buildBoard("Mobile (390px)", 390, 2480);
+
+  if (penpot.viewport) {
+    penpot.viewport.scrollAndZoomIntoView([d, t, m]);
+  }
+  return { status: "success", boards: [d.id, t.id, m.id] };
+})();</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 24px;">
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--cc-border); border-radius: 12px; padding: 20px;">
+            <h4 style="font-size: 14px; font-weight: 600; color: #FFF; margin-bottom: 6px;">1. Load via Penpot Plugin Manager</h4>
+            <p style="font-size: 12px; color: var(--cc-text-muted); line-height: 1.5;">
+              In Penpot, go to <strong>Plugins → Development → Load plugin from manifest...</strong>, select <code>penpot/manifest.json</code> and click Generate.
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--cc-border); border-radius: 12px; padding: 20px;">
+            <h4 style="font-size: 14px; font-weight: 600; color: #FFF; margin-bottom: 6px;">2. Execute via Penpot MCP</h4>
+            <p style="font-size: 12px; color: var(--cc-text-muted); line-height: 1.5;">
+              Connect your Penpot workspace to the MCP server and run the script via <code>execute_code</code> to populate all boards live.
+            </p>
+          </div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--cc-border); border-radius: 12px; padding: 20px;">
+            <h4 style="font-size: 14px; font-weight: 600; color: #FFF; margin-bottom: 6px;">3. Direct Markdown Spec</h4>
+            <p style="font-size: 12px; color: var(--cc-text-muted); line-height: 1.5;">
+              Read <code>DESIGN-SPEC.md</code> for the full developer handoff guide, responsive tables, and physics parameters.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Copy Notification Toast -->
+  <div id="toast" class="toast-pill">Copied to clipboard!</div>
+
+  <!-- Client JavaScript Interactions -->
+  <script>
+    // Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-tab');
+        document.getElementById('tab-' + target).classList.add('active');
+      });
+    });
+
+    // Viewport Mode Switching
+    const mainMockup = document.getElementById('main-device-mockup');
+    const singleWrap = document.getElementById('single-device-wrap');
+    const splitWrap = document.getElementById('split-devices-wrap');
+    const vpPills = document.querySelectorAll('.vp-pill');
+    const vpLabel = document.getElementById('mockup-vp-label');
+
+    function setDeviceViewport(mode) {
+      vpPills.forEach(p => p.classList.remove('active'));
+      const activePill = document.querySelector(`.vp-pill[data-vp="${mode}"]`);
+      if (activePill) activePill.classList.add('active');
+
+      if (mode === 'split') {
+        singleWrap.classList.add('hidden');
+        splitWrap.classList.add('active');
+      } else {
+        splitWrap.classList.remove('active');
+        singleWrap.classList.remove('hidden');
+
+        mainMockup.classList.remove('desktop', 'tablet', 'mobile');
+        mainMockup.classList.add(mode);
+
+        if (mode === 'desktop') vpLabel.textContent = '1440 × 900';
+        if (mode === 'tablet') vpLabel.textContent = '834 × 1194';
+        if (mode === 'mobile') vpLabel.textContent = '390 × 844';
+      }
+    }
+
+    // Zoom Scaling
+    function setZoom(scale) {
+      document.querySelectorAll('.zoom-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      const stage = document.getElementById('main-device-mockup');
+      stage.style.transform = `scale(${scale})`;
+      stage.style.transformOrigin = 'top center';
+    }
+
+    // Jump to section in iframe
+    function jumpToIframeSection(id) {
+      const iframe = document.getElementById('main-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.location.hash = '#' + id;
+      }
+    }
+
+    // Motion Interactive Simulator Functions
+    function runHeroReveal() {
+      const el = document.getElementById('hero-reveal-demo');
+      el.classList.remove('revealed');
+      void el.offsetWidth;
+      el.classList.add('revealed');
+    }
+    function resetHeroReveal() {
+      const el = document.getElementById('hero-reveal-demo');
+      el.classList.remove('revealed');
+    }
+
+    function runLabCounter() {
+      const strip = document.getElementById('lab-stat-strip');
+      strip.classList.add('rolled');
+    }
+    function resetLabCounter() {
+      const strip = document.getElementById('lab-stat-strip');
+      strip.classList.remove('rolled');
+    }
+    function triggerCounterRoll() {
+      const strip = document.getElementById('demo-stat-strip');
+      strip.classList.toggle('rolled');
+    }
+
+    let marqueePaused = false;
+    function setMarqueeSpeed(seconds) {
+      const track = document.getElementById('marquee-track');
+      track.style.animationDuration = seconds + 's';
+    }
+    function toggleMarqueePause() {
+      const track = document.getElementById('marquee-track');
+      marqueePaused = !marqueePaused;
+      track.style.animationPlayState = marqueePaused ? 'paused' : 'running';
+    }
+
+    // Toast and Clipboard Helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function copyText(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`Copied ${label || text} to clipboard!`);
+      });
+    }
+
+    function copyTokensToClipboard() {
+      const tokens = `:root {
+  --cc-red: #DE322D;
+  --cc-red-deep: #B82622;
+  --cc-red-subtle: rgba(222, 50, 45, 0.14);
+  --cc-whatsapp: #25D366;
+  --cc-gold: #E8B44A;
+  --cc-ink: #0A0A0A;
+  --cc-hero-bg: #0C0D10;
+  --cc-surface: #14151A;
+  --cc-surface-elevated: #232323;
+  --cc-bg-light: #F1F2F1;
+  --cc-white: #FFFFFF;
+  --cc-text-on-dark: #B0B4BE;
+  --cc-border-dark: #2A2A2A;
+}`;
+      navigator.clipboard.writeText(tokens).then(() => {
+        showToast("Copied all CSS Token variables!");
+      });
+    }
+
+    function copyPenpotScript() {
+      const script = document.getElementById('penpot-script-display').innerText;
+      navigator.clipboard.writeText(script).then(() => {
+        showToast("Copied Penpot Builder Script!");
+      });
+    }
+
+    // Auto-trigger reveal on load
+    window.addEventListener('load', () => {
+      setTimeout(runHeroReveal, 400);
+    });
+  </script>
+</body>
+</html>
+
