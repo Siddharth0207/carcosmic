@@ -403,6 +403,23 @@
   line-height: 1 !important;
 }
 
+/* Pricing Cards Layout & Spacing without Price Tags */
+.pricing-card-wrapper:not(.on-site-card-wrapper) .plan-price-wrapper {
+  margin-top: 18px !important;
+}
+
+.pricing-card-wrapper:not(.on-site-card-wrapper) .plan-descrip {
+  margin-top: 0 !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: var(--_colors---text-secondary, #5d5d5d) !important;
+  min-height: 42px !important;
+}
+
+.pricing-card-wrapper:not(.on-site-card-wrapper) .plan-list-wrapper {
+  margin-top: 24px !important;
+}
+
 /* ==================== STUDENT SUCCESS STORIES / REVIEWS ==================== */
 .testimonial-section {
   overflow: visible !important;
