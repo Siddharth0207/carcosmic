@@ -524,6 +524,13 @@ img.star {
   }
 }
 
+/* ==================== PRICING SECTION SCROLL ANCHOR ==================== */
+.pricing-section,
+.preicing-section,
+#pricing {
+  scroll-margin-top: 80px !important;
+}
+
 /* ==================== ON-SITE TRAINING TAB ==================== */
 .on-site-tab-block {
   display: flex !important;
